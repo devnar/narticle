@@ -1,0 +1,105 @@
+/* Alert */
+.alert {
+    color: #010922ff;
+    padding: 10px;
+    border-radius: 4px;
+    border: 2px solid #010922ff;
+  }
+  
+  /* Button */
+  button {
+    background-color: white;
+    color: #010922ff;
+    border: 2px solid #010922ff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    color: #f50870ff;
+    border: 2px solid #f50870ff;
+  }
+  
+  /* Badge */
+  .badge-alt {
+    color: white;
+    background: #010922ff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 2px solid #010922ff;
+  }
+  
+  .badge {
+    color: white;
+    background: #f50870ff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 2px solid #f50870ff;
+  }
+  
+  /* Select */
+  .select {
+    color: #010922ff;
+    padding: 10px;
+    border-radius: 4px;
+    border: 2px solid #010922ff;
+  }
+  
+  /* Kod Bloğu */
+  pre {
+    background-color: #010922ff;
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  /* Checkbox */
+  .checkbox-wrapper {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .checkbox-wrapper input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .checkbox-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border: 2px solid #010922ff;
+    border-radius: 4px;
+  }
+  
+  .checkbox-wrapper input:checked ~ .checkbox-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .checkbox-wrapper input:checked ~ .checkbox-checkmark:after {
+    display: block;
+  }
+  
+  .checkbox-wrapper .checkbox-checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #f50870ff;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }  

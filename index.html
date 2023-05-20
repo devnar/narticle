@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <title>Tickle</title>
+        <!-- Meta -->
+        <meta name="viewport" content="width=device-width,  initial-scale=1, maximum-scale=1 user-scalable=0" />
+        <meta name="description" content="Not alma uygulaması" />
+        <meta name="copyright" content="NAR © 2021 Tüm hakları saklı" />
+        <meta name="theme-color" content="#23b5b5" />
+        <meta property="og:title" content="Tickle" />
+        <meta property="og:description" content="description" />
+        <meta property="og:image" content="https://devnar.github.io/nar.png" />
+        <!-- /robots -->
+        <meta name="robots" content="index,follow" />
+        <meta name="revisit-after" content="1 days" />
+        <!-- Link -->
+        <link rel="shortcut icon" type="image/png" href="https://devnar.github.io/nar.png" />
+        <link rel="stylesheet" href="https://devnar.github.io/lib/all.css" />
+        <link rel="stylesheet" href="temp.css" />
+        <!-- Script -->
+        <script>function getParameterByName(name, url) {if (!url) url = window.location.href;name = name.replace(/[\[\]]/g, "\\$&");var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),results = regex.exec(url);if (!results) return null;if (!results[2]) return "";return decodeURIComponent(results[2].replace(/\+/g, " "));}</script>
+        <script src="https://devnar.github.io/lib/all.js"></script>
+        <!-- Style -->
+        <style>
+            body {
+                background-color: #eee;
+                font-family: "Roboto Slab";
+                font-weight: 300;
+                color: #333;
+                text-rendering: optimizeLegibility;
+                -webkit-font-smoothing: antialiased;
+            }
+            h2 {
+                font-weight: 400;
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            p {
+                line-height: 25px;
+            }
+            i {
+                font-size: 25px;
+            }
+            .content-main {
+                position: relative;
+                max-width: 700px;
+                width: auto;
+                margin: 40px auto;
+            }
+            .content-main .content-box {
+                max-width: 700px;
+                width: auto;
+                height: auto;
+                overflow: hidden;
+                padding: 20px;
+                background: #fff;
+                box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
+            }
+            .content-main .content-box:before,
+            .content-main .content-box:after {
+                content: "";
+                height: 2px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                clip-path: polygon(0% 0%, 5% 100%, 10% 0%, 15% 100%, 20% 0%, 25% 100%, 30% 0%, 35% 100%, 40% 0%, 45% 100%, 50% 0%, 55% 100%, 60% 0%, 65% 100%, 70% 0%, 75% 100%, 80% 0%, 85% 100%, 90% 0%, 95% 100%, 100% 0%);
+                -webkit-clip-path: polygon(0% 0%, 5% 100%, 10% 0%, 15% 100%, 20% 0%, 25% 100%, 30% 0%, 35% 100%, 40% 0%, 45% 100%, 50% 0%, 55% 100%, 60% 0%, 65% 100%, 70% 0%, 75% 100%, 80% 0%, 85% 100%, 90% 0%, 95% 100%, 100% 0%);
+            }
+            .content-main .content-box:before {
+                background-color: #eee;
+                top: 0;
+            }
+            .content-main .content-box:after {
+                background-color: #fff;
+                bottom: -2px;
+            }
+            hr {
+                height:2px;
+                border-width:0;
+                color: #333;
+                background-color: #333;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content-main">
+            <div class="content-box">
+                <h2 id="t"></h2>
+                <div id="c"></div>
+                <hr>
+                <i class="icon nl-twitter" onclick="window.open('https://twitter.com/intent/tweet?text=' + window.location.href + ' Çok güzel bir blog gördüm');"></i>
+                <i class="icon nl-instagram-alt" onclick="window.open('https://www.instagram.com/?caption=' + window.location.href + ' Çok güzel bir blog gördüm');"></i>
+                <i class="icon nl-whatsapp-square" onclick="window.open('https://api.whatsapp.com/send?text=' + window.location.href + ' Çok güzel bir blog gördüm');"></i>
+            </div>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+        <script>
+            const firebaseConfig = {projectId: "nar-tickle"};
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.database();
+            document.getElementById("t").innerHTML = getParameterByName("l");;
+            var l = getParameterByName("l");
+            
+            const fetchChat = db.ref("l/"+l+"/c");
+            fetchChat.on('value', function (snapshot) {
+            const text = snapshot.val();
+            document.getElementById("c").innerHTML = text;
+            });
+        </script>
+    </body>
+</html>
