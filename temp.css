@@ -43,6 +43,7 @@ details {
 
 /* list */
 li {
+  margin-bottom: 10px;
   list-style:inside;
 }
 
