@@ -93,14 +93,22 @@
             const firebaseConfig = {projectId: "nar-tickle"};
             firebase.initializeApp(firebaseConfig);
             const db = firebase.database();
-            document.getElementById("t").innerHTML = getParameterByName("l");;
-            var l = getParameterByName("l");
-            
-            const fetchChat = db.ref("l/"+l+"/c");
-            fetchChat.on('value', function (snapshot) {
-            const text = snapshot.val();
-            document.getElementById("c").innerHTML = text;
-            });
+            if (getParameterByName("l")!=null && getParameterByName("l")!="") {
+                document.getElementById("t").innerHTML = getParameterByName("l");
+                var l = getParameterByName("l");
+                
+                const fetchChat = db.ref("l/"+l+"/c");
+                fetchChat.on('value', function (snapshot) {
+                const text = snapshot.val();
+                document.getElementById("c").innerHTML = text;});
+            } else {
+                document.getElementById("t").innerHTML = "SSS"
+                
+                const fetchChat = db.ref("l/sss/c");
+                fetchChat.on('value', function (snapshot) {
+                const text = snapshot.val();
+                document.getElementById("c").innerHTML = text;});
+            }
         </script>
     </body>
 </html>
