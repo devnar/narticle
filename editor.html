@@ -52,7 +52,7 @@
                 document.getElementById("prew").innerHTML += "<pre><code>Bu bir code</code></pre>"
             }
             function list() {
-                document.getElementById("prew").innerHTML += "<li>Bu bir liste</li>"
+                document.getElementById("prew").innerHTML += "<ul style='background: #eee; border-radius:10px;' id='list'><li>Bu bir liste</li></ul>"
             }
             function button() {
                 document.getElementById("prew").innerHTML += "<button>Bu bir buton</button>"
@@ -89,12 +89,16 @@
                 justify-content: space-between;
             }
 
-            .nav ul {
+            .nav ul:nth-child(1) {
                 overflow-x: auto;
                 white-space: nowrap;
                 list-style-type: none;
                 padding: 0;
                 margin: 10px;
+            }
+
+            .nav ul:nth-last-child() {
+                width: 50px;
             }
 
             .nav li {
@@ -120,14 +124,14 @@
         </div>
         <div id="2" class="nav">
             <ul>
-                <li class="icon n-image" onclick="image()"></li>
-                <input id="imageUploader" type="file" accept="image/*" style="display: none" onchange="handleImageUpload(event)">
-                <li class="icon n-caret-down-square" onclick="detail()"></li>
-                <li class="icon n-square-rounded" onclick="button()"></li>
                 <li class="icon n-heading" onclick="heading()"></li>
                 <li class="icon n-paragraph" onclick="paragraph()"></li>
                 <li class="icon n-code-block" onclick="codeBlock()"></li>
                 <li class="icon n-list-ul" onclick="list()"></li>
+                <li class="icon n-image" onclick="image()"></li>
+                <input id="imageUploader" type="file" accept="image/*" style="display: none" onchange="handleImageUpload(event)">
+                <li class="icon n-caret-down-square" onclick="detail()"></li>
+                <li class="icon n-square-rounded" onclick="button()"></li>
             </ul>
             <ul>
                 <li class="icon n-menu" onclick="document.getElementById('1').style.display ='flex';document.getElementById('2').style.display ='none'"></li>
