@@ -23,14 +23,15 @@
             function toggleEditable() {
             var div = document.getElementById("prew");
             var elements = div.getElementsByTagName("*");
+            var ebtn = document.getElementById("edit");
 
             for (var i = 0; i < elements.length; i++) {
                 var element = elements[i];
                 if (element.getAttribute("contenteditable") === "true") {
-                element.setAttribute("contenteditable", "false");
+               ebtn.class = "icon ns-edit" element.setAttribute("contenteditable", "false");
                 element.classList.remove("editable");
                 } else {
-                element.setAttribute("contenteditable", "true");
+               ebtn.class = "icon n-edit" element.setAttribute("contenteditable", "true");
                 element.classList.add("editable");
                 }
             }
@@ -114,15 +115,7 @@
     </head>
     <body onload="ld()">
         <div id="prew"></div>
-        <div id="1" class="nav" style="display: none;">
-            <ul>
-                <button onclick="toggleEditable()">Tümünü Düzenle</button>
-            </ul>
-            <ul>
-                <li class="icon n-x" onclick="document.getElementById('1').style.display ='none';document.getElementById('2').style.display ='flex'"></li>
-            </ul>
-        </div>
-        <div id="2" class="nav">
+        <div id="1" class="nav">
             <ul>
                 <li class="icon n-heading" onclick="heading()"></li>
                 <li class="icon n-paragraph" onclick="paragraph()"></li>
@@ -134,7 +127,7 @@
                 <li class="icon n-square-rounded" onclick="button()"></li>
             </ul>
             <ul>
-                <li class="icon n-edit" onclick="toggleEditable()"></li>
+                <li id="edit" class="icon n-edit" onclick="toggleEditable()"></li>
             </ul>
         </div>
         <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
