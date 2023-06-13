@@ -159,7 +159,9 @@
             }
 
             function chanced() {
-                db.ref("l/" + getParameterByName("n")).set({c: document.getElementById("prew").innerHTML,});
+                if (onay) {
+                    db.ref("l/" + getParameterByName("n")).set({c: document.getElementById("prew").innerHTML,p: getParameterByName("p")});
+                }
             }
 
             function handleImageUpload(event) {
