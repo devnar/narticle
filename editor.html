@@ -41,7 +41,7 @@
                         ebtn.className = "icon n-edit";
                         element.setAttribute("contenteditable", "false");
                         element.classList.remove("editable");
-                        chanced()
+                        chanced();
                     } else {
                         ebtn.className = "icon ns-edit";
                         element.setAttribute("contenteditable", "true");
@@ -126,7 +126,7 @@
             }
         </style>
     </head>
-    <body>
+    <body onload="control()">
         <div id="prew"></div>
         <div id="1" class="nav">
             <ul>
@@ -147,20 +147,28 @@
         <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-storage.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
         <script>
+            function control() {
+                if ((getParameterByName("n") != null) & (getParameterByName("p") != null)) {
+                    
+                        localStorage.setItem("pass", prompt("şifre"));
+                    
+                } else {
+                    window.location.href = "https://devnar.github.io/tickle";
+                }
+            }
+
             const firebaseConfig = { projectId: "nar-tickle" };
             firebase.initializeApp(firebaseConfig);
             const db = firebase.database();
-            var onay = prompt()==atob(getParameterByName("p"))
-
-            if (onay) {
-                db.ref("l/" + getParameterByName("n") + "/c").on("value", function (snapshot) {
+            db.ref("l/" + getParameterByName("n") + "/c").on("value", function (snapshot) {
+                if (localStorage.getItem("pass") == atob(getParameterByName("p"))) {
                     document.getElementById("prew").innerHTML = snapshot.val();
-                });
-            }
+                }
+            });
 
             function chanced() {
-                if (onay) {
-                    db.ref("l/" + getParameterByName("n")).set({c: document.getElementById("prew").innerHTML,p: getParameterByName("p")});
+                if (localStorage.getItem("pass") == atob(getParameterByName("p"))) {
+                    db.ref("l/" + getParameterByName("n")).set({ c: document.getElementById("prew").innerHTML, p: getParameterByName("p") });
                 }
             }
 
