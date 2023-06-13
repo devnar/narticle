@@ -41,6 +41,7 @@
                         ebtn.className = "icon n-edit";
                         element.setAttribute("contenteditable", "false");
                         element.classList.remove("editable");
+                        chanced()
                     } else {
                         ebtn.className = "icon ns-edit";
                         element.setAttribute("contenteditable", "true");
@@ -149,10 +150,17 @@
             const firebaseConfig = { projectId: "nar-tickle" };
             firebase.initializeApp(firebaseConfig);
             const db = firebase.database();
+            var onay = prompt()==atob(getParameterByName("p"))
 
-            db.ref("l/" + getParameterByName("n") + "/c").on("value", function (snapshot) {
-                document.getElementById("prew").innerHTML = snapshot.val();
-            });
+            if (onay) {
+                db.ref("l/" + getParameterByName("n") + "/c").on("value", function (snapshot) {
+                    document.getElementById("prew").innerHTML = snapshot.val();
+                });
+            }
+
+            function chanced() {
+                db.ref("l/" + getParameterByName("n")).set({c: document.getElementById("prew").innerHTML,});
+            }
 
             function handleImageUpload(event) {
                 const file = event.target.files[0];
