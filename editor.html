@@ -30,6 +30,20 @@
         </script>
         <script src="https://devnar.github.io/lib/all.js"></script>
         <script>
+            document.addEventListener("click", function (e) {
+            var focusedElement = e.target;
+            var div = document.getElementById("prew");
+            var popup = document.getElementById("2");
+
+            if (focusedElement.getAttribute("contenteditable") === "true") {
+                popup.style.display = "flex";
+                div.style.height = "72%";
+            } else {
+                popup.style.display = "none";
+                div.style.height = "82%";
+            }
+            });
+
             function toggleEditable() {
                 var div = document.getElementById("prew");
                 var ebtn = document.getElementById("edit");
@@ -50,10 +64,28 @@
                 }
             }
             // elements
+            function badge() {  
+                document.addEventListener("click", function (e) {
+                    if (e.target.getAttribute("contenteditable") === "true") {
+                    e.target.setAttribute('badge','')
+                }})
+            }
+            function badgea() {
+                document.addEventListener("click", function (e) {
+                    if (e.target.getAttribute("contenteditable") === "true") {
+                    e.target.setAttribute('badge-alt','')
+                }})
+            }
+            function border() {
+                document.addEventListener("click", function (e) {
+                    if (e.target.getAttribute("contenteditable") === "true") {
+                    e.target.setAttribute('alert','')
+                }})
+            }
             function image() {
                 document.getElementById("imageUploader").click();
             }
-function trash() {
+            function trash() {
                 document.getElementById("prew").innerHTML = "";
             }
             function detail() {
@@ -105,7 +137,6 @@ function trash() {
                 align-items: center;
                 justify-content: space-between;
             }
-
             .nav ul:nth-child(1) {
                 overflow-x: auto;
                 white-space: nowrap;
@@ -113,24 +144,29 @@ function trash() {
                 padding: 0;
                 margin: 10px;
             }
-
             .nav ul:nth-last-child() {
                 width: 50px;
             }
-
             .nav li {
                 padding: 10px;
                 font-size: x-large;
                 margin: 0 10px;
             }
             .nav li:hover {
-                background-color: rgb(233, 233, 233);
+                background-color: #dadada;
                 border-radius: 10px;
             }
         </style>
     </head>
     <body onload="control()">
         <div id="prew"></div>
+        <div id="2" class="nav" style="display: none;background: #eee;flex-direction: column;align-items: center;justify-content: space-between;">
+            <ul>
+                <li class="icon n-badge" onclick="badge()"></li>
+                <li class="icon ns-badge" onclick="badgea()"></li>
+                <li class="icon n-border-outer" onclick="border()"></li>
+            </ul>
+        </div>
         <div id="1" class="nav">
             <ul>
                 <li class="icon n-heading" onclick="heading()"></li>
@@ -143,7 +179,7 @@ function trash() {
                 <li class="icon n-square-rounded" onclick="button()"></li>
             </ul>
             <ul style="min-width: 140px;">
-                <li id="edit" class="icon n-trash" onclick="trash()"></li>
+                <li id="trash" class="icon n-trash" onclick="trash()"></li>
                 <li id="edit" class="icon n-edit" onclick="toggleEditable()"></li>
             </ul>
         </div>
