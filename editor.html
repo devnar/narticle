@@ -147,27 +147,28 @@
         <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-storage.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
         <script>
+            var c = localStorage.getItem("pass") == atob(getParameterByName("p")) & localStorage.getItem("pas") == getParameterByName("p");
+
             function control() {
                 if ((getParameterByName("n") != null) & (getParameterByName("p") != null)) {
-                    
                         localStorage.setItem("pass", prompt("şifre"));
-                    
                 } else {
-                    window.location.href = "https://devnar.github.io/tickle";
+                    //window.location.href = "https://devnar.github.io/tickle";
                 }
             }
 
             const firebaseConfig = { projectId: "nar-tickle" };
             firebase.initializeApp(firebaseConfig);
             const db = firebase.database();
+            db.ref("l/" + getParameterByName("n") + "/p").on("value", function (s) {localStorage.setItem("pas", s.val())})
             db.ref("l/" + getParameterByName("n") + "/c").on("value", function (snapshot) {
-                if (localStorage.getItem("pass") == atob(getParameterByName("p"))) {
+                if (c) {
                     document.getElementById("prew").innerHTML = snapshot.val();
                 }
             });
 
             function chanced() {
-                if (localStorage.getItem("pass") == atob(getParameterByName("p"))) {
+                if (c) {
                     db.ref("l/" + getParameterByName("n")).set({ c: document.getElementById("prew").innerHTML, p: getParameterByName("p") });
                 }
             }
