@@ -53,6 +53,9 @@
             function image() {
                 document.getElementById("imageUploader").click();
             }
+function trash() {
+                document.getElementById("prew").innerHTML = "";
+            }
             function detail() {
                 document.getElementById("prew").innerHTML += "<details><summary>başlık</summary><p>metin</p></details>";
             }
@@ -140,6 +143,7 @@
                 <li class="icon n-square-rounded" onclick="button()"></li>
             </ul>
             <ul>
+<li id="edit" class="icon n-trash" onclick="trash()"></li>
                 <li id="edit" class="icon n-edit" onclick="toggleEditable()"></li>
             </ul>
         </div>
