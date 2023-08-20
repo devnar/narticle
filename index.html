@@ -39,18 +39,18 @@
             const firebaseConfig = {projectId: "nar-tickle"};
             firebase.initializeApp(firebaseConfig);
             const db = firebase.database();
-            if (getParameterByName("l")!=null && getParameterByName("l")!="") {
-                document.getElementById("t").innerHTML = getParameterByName("l");
-                var l = getParameterByName("l");
+            if (getParameterByName("page")!=null && getParameterByName("page")!="") {
+                document.getElementById("t").innerHTML = getParameterByName("page");
+                var l = getParameterByName("page");
                 
                 const fetchChat = db.ref("l/"+l+"/c");
                 fetchChat.on('value', function (snapshot) {
                 const text = snapshot.val();
                 document.getElementById("c").innerHTML = text;});
             } else {
-                document.getElementById("t").innerHTML = "SSS"
+                document.getElementById("t").innerHTML = "Hoş Geldin"
                 
-                const fetchChat = db.ref("l/sss/c");
+                const fetchChat = db.ref("l/Hoş Geldin/c");
                 fetchChat.on('value', function (snapshot) {
                 const text = snapshot.val();
                 document.getElementById("c").innerHTML = text;});
