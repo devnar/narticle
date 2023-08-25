@@ -26,7 +26,7 @@
                 if (!results) return null;
                 if (!results[2]) return "";
                 return decodeURIComponent(results[2].replace(/\+/g, " "));
-            }
+            } 
         </script>
         <script src="https://devnar.github.io/lib/all.js"></script>
         <script>
@@ -44,25 +44,18 @@
             }
             });
 
-            function toggleEditable() {
-                var div = document.getElementById("prew");
-                var ebtn = document.getElementById("edit");
-                var elements = div.getElementsByTagName("*");
+            function save() {
+                document.querySelectorAll('[contenteditable="true"]').forEach(function(element) {
+                    element.setAttribute('contenteditable', 'false');
+                });
 
-                for (var i = 0; i < elements.length; i++) {
-                    var element = elements[i];
-                    if (element.getAttribute("contenteditable") == "true") {
-                        ebtn.className = "icon n-edit";
-                        element.setAttribute("contenteditable", "false");
-                        element.classList.remove("editable");
-                        chanced();
-                    } else {
-                        ebtn.className = "icon ns-edit";
-                        element.setAttribute("contenteditable", "true");
-                        element.classList.add("editable");
-                    }
-                }
+                chanced();
             }
+            
+            function menu() {
+                // test
+            }
+
             // elements
             function badge() {  
                 document.addEventListener("click", function (e) {
@@ -96,6 +89,9 @@
             }
             function paragraph() {
                 document.getElementById("prew").innerHTML += "<p>Bu bir paragraf</p>";
+            }
+            function link() {
+                document.getElementById("prew").innerHTML += "<a href>Bu bir link</a>";
             }
             function codeBlock() {
                 document.getElementById("prew").innerHTML += "<pre><code>Bu bir code</code></pre>";
@@ -136,16 +132,7 @@
                 flex-direction: row;
                 align-items: center;
                 justify-content: space-between;
-            }
-            .nav ul:nth-child(1) {
-                overflow-x: auto;
-                white-space: nowrap;
-                list-style-type: none;
-                padding: 0;
-                margin: 10px;
-            }
-            .nav ul:nth-last-child() {
-                width: 50px;
+                text-align: center;
             }
             .nav li {
                 padding: 10px;
@@ -156,10 +143,45 @@
                 background-color: #dadada;
                 border-radius: 10px;
             }
+
+            /* Menu */
+            .context-menu {
+                border-radius: 10px;
+                position: absolute;
+                display: none;
+                background-color: #fff;
+                border: 1px solid #dadada;
+            }
+
+            .context-menu ul {
+                padding: 0;
+                margin: 0;
+            }
+
+            .context-menu li {
+                padding: 10px;
+                list-style: none;
+            }
+
+            .context-menu li:hover {
+                background-color: #dadada;
+            }
+
+            .context-menu a {
+                text-decoration: none;
+                color: #010922;
+                display: block;
+            }
         </style>
     </head>
     <body onload="control()">
         <div id="prew"></div>
+        <div class="context-menu" id="contextMenu">
+            <ul>
+              <li><a href="javascript:save()">Kaydet</a></li>
+              <li><a href="javascript:trash()">Temizle</a></li>
+            </ul>
+          </div>
         <div id="2" class="nav" style="display: none;background: #eee;flex-direction: column;align-items: center;justify-content: space-between;">
             <ul>
                 <li class="icon n-badge" onclick="badge()"></li>
@@ -171,16 +193,13 @@
             <ul>
                 <li class="icon n-heading" onclick="heading()"></li>
                 <li class="icon n-paragraph" onclick="paragraph()"></li>
+                <li class="icon n-link" onclick="link()"></li>
                 <li class="icon n-code-block" onclick="codeBlock()"></li>
                 <li class="icon n-list-ul" onclick="list()"></li>
                 <li class="icon n-image" onclick="image()"></li>
                 <input id="imageUploader" type="file" accept="image/*" style="display: none;" onchange="handleImageUpload(event)" />
                 <li class="icon n-caret-down-square" onclick="detail()"></li>
                 <li class="icon n-square-rounded" onclick="button()"></li>
-            </ul>
-            <ul style="min-width: 140px;">
-                <li id="trash" class="icon n-trash" onclick="trash()"></li>
-                <li id="edit" class="icon n-edit" onclick="toggleEditable()"></li>
             </ul>
         </div>
         <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
@@ -193,7 +212,7 @@
                 if ((getParameterByName("n") != null) & (getParameterByName("p") != null)) {
                         localStorage.setItem("pass", prompt("şifre"));
                 } else {
-                    window.location.href = "https://devnar.github.io/tickle";
+                    //window.location.href = "https://devnar.github.io/tickle";
                 }
             }
 
@@ -227,6 +246,25 @@
 
                 reader.readAsDataURL(file);
             }
+            
+            // menu
+            const contextMenu = document.getElementById('contextMenu');
+            const content = document.getElementById('prew');
+
+            content.addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+            
+            const posX = event.clientX;
+            const posY = event.clientY;
+            
+            contextMenu.style.display = 'block';
+            contextMenu.style.left = posX + 'px';
+            contextMenu.style.top = posY + 'px';
+            });
+
+            document.addEventListener('click', function (event) {
+            contextMenu.style.display = 'none';
+            });
         </script>
     </body>
 </html>
