@@ -51,29 +51,22 @@
 
                 chanced();
             }
-            
-            function menu() {
-                // test
-            }
 
             // elements
             function badge() {  
                 document.addEventListener("click", function (e) {
-                    if (e.target.getAttribute("contenteditable") === "true") {
                     e.target.setAttribute('badge','')
-                }})
+                })
             }
             function badgea() {
                 document.addEventListener("click", function (e) {
-                    if (e.target.getAttribute("contenteditable") === "true") {
                     e.target.setAttribute('badge-alt','')
-                }})
+                })
             }
             function border() {
                 document.addEventListener("click", function (e) {
-                    if (e.target.getAttribute("contenteditable") === "true") {
                     e.target.setAttribute('alert','')
-                }})
+                })
             }
             function image() {
                 document.getElementById("imageUploader").click();
@@ -82,25 +75,25 @@
                 document.getElementById("prew").innerHTML = "";
             }
             function detail() {
-                document.getElementById("prew").innerHTML += "<details><summary>başlık</summary><p>metin</p></details>";
+                document.getElementById("prew").innerHTML += "<details><summary contenteditable='true'>başlık</summary><p contenteditable='true'>metin</p></details>";
             }
             function heading() {
-                document.getElementById("prew").innerHTML += "<h2>Bu bir başlık</h2>";
+                document.getElementById("prew").innerHTML += "<h2 contenteditable='true'>Bu bir başlık</h2>";
             }
             function paragraph() {
-                document.getElementById("prew").innerHTML += "<p>Bu bir paragraf</p>";
+                document.getElementById("prew").innerHTML += "<p contenteditable='true'>Bu bir paragraf</p>";
             }
             function link() {
-                document.getElementById("prew").innerHTML += "<a href>Bu bir link</a>";
+                document.getElementById("prew").innerHTML += "<a href contenteditable='true'>Bu bir link</a>";
             }
             function codeBlock() {
-                document.getElementById("prew").innerHTML += "<pre><code>Bu bir code</code></pre>";
+                document.getElementById("prew").innerHTML += "<pre><code contenteditable='true'>Bu bir code</code></pre>";
             }
             function list() {
-                document.getElementById("prew").innerHTML += "<ul style='background: #eee; border-radius:10px;' id='list'><li>Bu bir liste</li></ul>";
+                document.getElementById("prew").innerHTML += "<ul style='background: #eee; border-radius:10px;' id='list' contenteditable='true'><li>Bu bir liste</li></ul>";
             }
             function button() {
-                document.getElementById("prew").innerHTML += "<button>Bu bir buton</button>";
+                document.getElementById("prew").innerHTML += "<button contenteditable='true'>Bu bir buton</button>";
             }
         </script>
         <!-- Style -->
@@ -142,6 +135,17 @@
             .nav li:hover {
                 background-color: #dadada;
                 border-radius: 10px;
+            }
+            .nav ul:nth-child(1) {
+                overflow-x: auto;
+                white-space: nowrap;
+                list-style-type: none;
+                padding: 0;
+                margin: 10px;
+            }
+            .nav ul:nth-last-child() {
+                width: 50px;
+                text-align: center;
             }
 
             /* Menu */
@@ -223,6 +227,9 @@
             db.ref("l/" + getParameterByName("n") + "/c").on("value", function (snapshot) {
                 if (c) {
                     document.getElementById("prew").innerHTML = snapshot.val();
+                    document.querySelectorAll('[contenteditable="false"]').forEach(function(element) {
+                    element.setAttribute('contenteditable', 'true');
+                });
                 }
             });
 
