@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>Tickle - editor</title>
+        <!-- Meta -->
+        <meta name="viewport" content="width=device-width,  initial-scale=1, maximum-scale=1 user-scalable=0" />
+        <meta name="description" content="Not alma uygulaması" />
+        <meta name="copyright" content="NAR © 2021 Tüm hakları saklı" />
+        <meta name="theme-color" content="#23b5b5" />
+        <meta property="og:title" content="Tickle editor" />
+        <meta property="og:description" content="description" />
+        <meta property="og:image" content="tikle.png" />
+        <!-- /robots -->
+        <meta name="robots" content="index,follow" />
+        <meta name="revisit-after" content="1 days" />
+        <!-- Link -->
+        <link rel="shortcut icon" type="image/png" href="tikle.png" />
+        <link rel="stylesheet" href="https://devnar.github.io/lib/all.css" />
+        <link rel="stylesheet" href="style.css" />
+        <!-- Script -->
+        <script src="https://devnar.github.io/lib/all.js"></script>
+        <!-- Style -->
+    </head>
+    <body>
+        <div id="loginPopup" class="popup">
+            <div class="popup-content">
+                <h2>Giriş Yap</h2>
+                <div class="form" id="loginForm">
+                    <input type="email" id="in-email" placeholder="E-Posta" name="email" required>
+                    <input type="password" id="in-password" placeholder="Şifre" name="password" required>
+                    <button type="submit" id="login-button">Giriş Yap</button>
+                    <button type="submit" id="signup-button">Kayıt Ol</button>
+                </div>
+            </div>
+        </div>
+        <div id="prew"></div>
+        <div class="context-menu" id="contextMenu">
+            <ul>
+              <li><a href="javascript:save()">Kaydet</a></li>
+              <li><a href="javascript:trash()">Temizle</a></li>
+            </ul>
+            
+        </div>
+        <div id="2" class="nav" style="display: none;background: #eee;flex-direction: column;align-items: center;justify-content: space-between;">
+            <ul>
+                <li class="icon n-badge" onclick="badge()"></li>
+                <li class="icon ns-badge" onclick="badgea()"></li>
+                <li class="icon n-border-outer" onclick="border()"></li>
+            </ul>
+        </div>
+        <nav id="menu">
+            <ul>
+                <li><a href="javascript:create();">Sayfa Oluştur</a></li>
+                <li><a href="javascript:firebase.auth().signOut();">Çıkış Yap</a></li>
+            <li disabled></li>
+            </ul>
+            <ul id="pages"></ul>
+        </nav>
+        <div id="1" class="nav">
+            <ul>
+                <li class="icon n-heading" onclick="heading()"></li>
+                <li class="icon n-paragraph" onclick="paragraph()"></li>
+                <li class="icon n-link" onclick="link()"></li>
+                <li class="icon n-code-block" onclick="codeBlock()"></li>
+                <li class="icon n-list-ul" onclick="list()"></li>
+                <li class="icon n-image" onclick="image()"></li>
+                <input id="imageUploader" type="file" accept="image/*" style="display: none;" onchange="handleImageUpload(event)" />
+                <li class="icon n-caret-down-square" onclick="detail()"></li>
+                <li class="icon n-square-rounded" onclick="button()"></li>
+            </ul>
+            <ul>
+                <li class="icon n-menu" id="menuButton"></li>
+            </ul>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+        <script src="firebase.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
