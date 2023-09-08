@@ -72,7 +72,6 @@ document.getElementById("pages").addEventListener("click", function (event) {
 });
 
 function updateUI(user) {
-    console.log(user.uid);
     var authContainer = document.getElementById("loginPopup");
     if (user) {
         database.ref("u/" + user.uid).once("value")
