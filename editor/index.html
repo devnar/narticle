@@ -15,7 +15,7 @@
         <!-- Link -->
         <link rel="shortcut icon" type="image/png" href="https://devnar.github.io/logos/tikle.png" />
         <link rel="stylesheet" href="style.css" />
-        <link rel="stylesheet" href="https://devnar.github.io/lib/all/icon.css">
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
         <!-- Script -->
         <script src="https://devnar.github.io/lib/all.js"></script>
         <!-- Style -->
@@ -42,8 +42,8 @@
         </div>
         <div id="2" class="nav" style="display: none;background: #eee;flex-direction: column;align-items: center;justify-content: space-between;">
             <ul>
-                <li class="icon n-badge" onclick="badge()"></li>
-                <li class="icon ns-badge" onclick="badgea()"></li>
+                <li class="bx bx-badge" onclick="badge()"></li>
+                <li class="bx bxs-badge" onclick="badgea()"></li>
                 <li class="icon n-border-outer" onclick="border()"></li>
             </ul>
         </div>
@@ -57,18 +57,18 @@
         </nav>
         <div id="1" class="nav">
             <ul>
-                <li class="icon n-heading" onclick="heading()"></li>
-                <li class="icon n-paragraph" onclick="paragraph()"></li>
-                <li class="icon n-link" onclick="link()"></li>
+                <li class="bx bx-heading" onclick="heading()"></li>
+                <li class="bx bx-paragraph" onclick="paragraph()"></li>
+                <li class="bx bx-link" onclick="link()"></li>
                 <li class="icon n-code-block" onclick="codeBlock()"></li>
-                <li class="icon n-list-ul" onclick="list()"></li>
-                <li class="icon n-image" onclick="image()"></li>
+                <li class="bx bx-list-ul" onclick="list()"></li>
+                <li class="bx bx-image" onclick="image()"></li>
                 <input id="imageUploader" type="file" accept="image/*" style="display: none;" onchange="handleImageUpload(event)" />
-                <li class="icon n-caret-down-square" onclick="detail()"></li>
-                <li class="icon n-square-rounded" onclick="button()"></li>
+                <li class="bx bx-caret-down-square" onclick="detail()"></li>
+                <li class="bx bx-square-rounded" onclick="button()"></li>
             </ul>
             <ul>
-                <li class="icon n-menu" id="menuButton"></li>
+                <li class="bx bx-menu" id="menuButton"></li>
             </ul>
         </div>
         <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
